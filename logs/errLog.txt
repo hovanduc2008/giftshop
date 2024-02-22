@@ -1,0 +1,3 @@
+2023-07-24/01:13:59		d2c17bd6-627b-400b-90a9-328ff7a8fd02		TypeError: authHeader?.startWith is not a function
+2023-07-24/09:06:03		4978035b-8598-4ca4-ad57-b26049c16388		Error: Not allowed to CORS
+2023-07-24/09:06:03		a886bc30-35c6-456d-8112-f247d74fe064		Error: Not allowed to CORS
