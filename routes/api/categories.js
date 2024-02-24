@@ -13,6 +13,7 @@ router
     .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editer), categoryController.updateCategory)
     .delete(verifyRoles(ROLES_LIST.Admin), categoryController.deleteCategory);
 
-router.route("/:id").get(categoryController.getCategory);
+router.route("byid/:id").get(categoryController.getCategory);
+router.route("/search").get(categoryController.searchCategories);
 
 module.exports = router;

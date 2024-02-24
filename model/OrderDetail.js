@@ -22,6 +22,9 @@ const OrderDetailsSchema = new Schema(
         discount: {
             type: Number,
         },
+        total_price: {
+            type: Number,
+        },
     },
     { timestamps: true },
 );

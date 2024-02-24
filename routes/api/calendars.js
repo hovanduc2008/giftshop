@@ -13,6 +13,7 @@ router
     .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editer), calendarController.updateCalendar)
     .delete(verifyRoles(ROLES_LIST.Admin), calendarController.deleteCalendar);
 
-router.route("/:id").get(calendarController.getCalendar);
+router.route("/byid/:id").get(calendarController.getCalendar);
+router.route("/search").get(calendarController.searchCalendars);
 
 module.exports = router;

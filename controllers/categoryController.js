@@ -1,4 +1,5 @@
 const Category = require("../model/Category");
+const { paginate } = require("../config/common");
 
 const getAllCategories = async (req, res) => {
     const categories = await Category.find();
@@ -63,10 +64,45 @@ const getCategory = async (req, res) => {
     res.json(category);
 };
 
+const searchCategories = async (req, res) => {
+    try {
+        const queryParams = req.query;
+        const page = parseInt(req.query.page) || 1;
+        const perPage = parseInt(req.query.perpage) || 10;
+        const queryConditions = {};
+        if (queryParams.q) {
+            queryConditions.$or = [
+                { name: { $regex: queryParams.q, $options: "i" } },
+                { slug: { $regex: queryParams.q, $options: "i" } },
+            ];
+        }
+        const categories = await paginate(
+            Category,
+            {
+                search: queryConditions,
+                sort: queryParams.sort,
+            },
+            page,
+            perPage,
+        );
+        if (!categories || categories.length === 0) {
+            return res.status(404).json({ message: "Không tìm thấy danh mục." });
+        }
+        return res.status(200).json(categories);
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "ID không hợp lệ." });
+        }
+        console.error("Error searching products:", error);
+        return res.status(500).json({ message: "Đã xảy ra lỗi khi tìm kiếm danh mục." });
+    }
+};
+
 module.exports = {
     getAllCategories,
     createNewCategory,
     updateCategory,
     deleteCategory,
     getCategory,
+    searchCategories,
 };

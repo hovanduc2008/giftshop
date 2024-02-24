@@ -56,6 +56,10 @@ app.use("/logout", require("./routes/logout"));
 app.use(verifyJWT);
 app.use("/calendars", require("./routes/api/calendars"));
 app.use("/categories", require("./routes/api/categories"));
+app.use("/products", require("./routes/api/products"));
+app.use("/orders", require("./routes/api/orders"));
+app.use("/orderdetails", require("./routes/api/orderDetails"));
+app.use("/images", require("./routes/api/images"));
 
 app.all("*", (req, res) => {
     res.status(404);

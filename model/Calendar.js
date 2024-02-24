@@ -10,6 +10,9 @@ const CalendarsSchema = new Schema(
             type: String,
             required: true,
         },
+        slug: {
+            type: String,
+        },
         description: {
             type: String,
             required: true,
@@ -26,5 +29,16 @@ const CalendarsSchema = new Schema(
         timestamps: true,
     },
 );
+
+CalendarsSchema.pre("save", function (next) {
+    const calendar = this;
+    const title = calendar.title;
+
+    const slug = slugify(title, { lower: true });
+
+    calendar.slug = slug;
+
+    next();
+});
 
 module.exports = mongoose.model("Calendar", CalendarsSchema);

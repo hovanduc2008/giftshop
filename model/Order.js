@@ -9,7 +9,6 @@ const OrderSchema = new Schema(
         },
         total_amount: {
             type: Number,
-            required: true,
         },
         order_note: {
             type: String,
@@ -29,6 +28,7 @@ const OrderSchema = new Schema(
         order_status: {
             type: String,
             enum: ["pending", "confirmed", "shipped", "delivered"],
+            default: "pending",
         },
     },
     { timestamps: true },

@@ -4,14 +4,23 @@ const slugify = require("slugify");
 
 const ProductsSchema = new Schema(
     {
+        user_id: {
+            type: String,
+        },
         title: {
             type: String,
             required: true,
         },
         slug: {
             type: String,
-            required: true,
         },
+        country: {
+            type: String,
+        },
+        website: {
+            type: String,
+        },
+
         image: {
             type: String,
         },
