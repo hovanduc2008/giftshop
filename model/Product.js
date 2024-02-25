@@ -7,6 +7,9 @@ const ProductsSchema = new Schema(
         user_id: {
             type: String,
         },
+        cate_id: {
+            type: String,
+        },
         title: {
             type: String,
             required: true,

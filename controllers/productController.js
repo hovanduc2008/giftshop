@@ -16,6 +16,7 @@ const createNewProduct = async (req, res) => {
     try {
         const result = await Product.create({
             user_id: req.user_id,
+            cate_id: req.body.cate_id,
             title: req.body.title,
             country: req.body.country,
             website: req.body.website,
@@ -43,6 +44,7 @@ const updateProduct = async (req, res) => {
         return res.status(204).json({ message: `No Product matches ID ${req.body.id}.` });
     }
     if (req.body?.title) product.title = req.body.title;
+    if (req.body?.cate_id) product.cate_id = req.body.cate_id;
     if (req.body?.description) product.description = req.body.description;
     if (req.body?.image) product.image = req.body.image;
     if (req.body?.content) product.content = req.body.content;
